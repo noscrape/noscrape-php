@@ -2,7 +2,7 @@
 
 namespace Schoenbergerb\Noscrape;
 
-include "vendor/autoload.php";
+include __DIR__ . "/../vendor/autoload.php";
 
 use Exception;
 
