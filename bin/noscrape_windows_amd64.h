@@ -74,7 +74,7 @@ typedef struct { void *data; GoInt len; GoInt cap; } GoSlice;
 extern "C" {
 #endif
 
-extern __declspec(dllexport) char* noscrape_obfuscate(char* s);
+extern __declspec(dllexport) char* noscrape_obfuscate(char* s, char* mapping);
 extern __declspec(dllexport) char* noscrape_render(char* f, char* m);
 
 #ifdef __cplusplus

@@ -4,6 +4,7 @@ namespace Schoenbergerb\Noscrape\Test;
 
 use PHPUnit\Framework\TestCase;
 use Schoenbergerb\Noscrape\Noscrape;
+use Schoenbergerb\Noscrape\OutputType;
 
 
 class NosrapeTest extends TestCase
@@ -17,7 +18,12 @@ class NosrapeTest extends TestCase
 
         echo "\n";
 
-        $rendered = $noscr->render("bbbb");
+        $obf = $noscr->obfuscate("und gleich noch einer");
+        print_r($obf);
+
+        echo "\n";
+
+        $rendered = $noscr->render(OutputType::BUFFER);
 
         print_r($rendered);
 

@@ -25,16 +25,16 @@ class NoscrapeLoader {
     public static function init(): NoscrapeLoader
     {
         $ffi = FFI::cdef("
-            const char *noscrape_obfuscate(char* text);
+            const char *noscrape_obfuscate(char* text, char* mapping);
             const char *noscrape_render(char* font, char* obf);
         ", self::loadLib());
 
         return new self($ffi);
     }
 
-    public function noscrape_obfuscate(string $s): string
+    public function noscrape_obfuscate(string $s, ?string $m): string
     {
-        return $this->ffi->noscrape_obfuscate($s);
+        return $this->ffi->noscrape_obfuscate($s, $m);
     }
 
     public function noscrape_render(string $font, string $obf): string
