@@ -9,7 +9,7 @@ use Exception;
 class Noscrape {
     private NoscrapeLoader $loader;
     private string $font;
-    private array $obfuscation = [];
+    private string $obfuscation = "[]";
 
     /**
      * @throws Exception
@@ -26,9 +26,9 @@ class Noscrape {
 
     public function obfuscate(string $s): string
     {
-        $obf = $this->loader->noscrape_obfuscate($s, json_encode($this->obfuscation));
+        $obf = $this->loader->noscrape_obfuscate($s, $this->obfuscation);
         $d = json_decode($obf, true);
-        $this->obfuscation = $d['map'];
+        $this->obfuscation = json_encode($d['map']);
         return $d['text'];
     }
 
