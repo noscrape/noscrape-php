@@ -11,7 +11,8 @@
   ],
   "require": {
     "ext-ffi": "*",
-    "ext-json": "*"
+    "ext-json": "*",
+    "ext-mbstring": "*"
   },
   "autoload": {
     "psr-4": {

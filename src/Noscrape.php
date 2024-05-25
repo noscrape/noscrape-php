@@ -7,9 +7,13 @@ include __DIR__ . "/../vendor/autoload.php";
 use Exception;
 
 class Noscrape {
-    private NoscrapeLoader $loader;
+
+    use NoscrapeLibraryLoader;
+
     private string $font;
-    private string $obfuscation = "[]";
+    private array $mapping = [];
+
+    private array $puaRange;
 
     /**
      * @throws Exception
@@ -20,16 +24,26 @@ class Noscrape {
             throw new Exception("font could not be found at: $font");
         }
 
-        $this->loader = NoscrapeLoader::init();
         $this->font = $font;
+        $this->puaRange = range(0xE000, 0xF8FF);
     }
 
     public function obfuscate(string $s): string
     {
-        $obf = $this->loader->noscrape_obfuscate($s, $this->obfuscation);
-        $d = json_decode($obf, true);
-        $this->obfuscation = json_encode($d['map']);
-        return $d['text'];
+        $availableChars = array_diff($this->puaRange, array_values($this->mapping));
+
+        $obfuscated = '';
+        foreach (str_split($s) as $c) {
+            if (!$this->mapping[$c]) {
+                $randomIndex = array_rand($availableChars);
+                $this->mapping[$c] = $availableChars[$randomIndex];
+                unset($availableChars[$randomIndex]);
+            }
+
+            $obfuscated .= mb_chr($this->mapping[$c], 'utf-8');
+        }
+
+        return $obfuscated;
     }
 
     /**
@@ -39,12 +53,15 @@ class Noscrape {
      */
     public function render(OutputType $outputType=OutputType::BASE64): string
     {
-        $result = $this->loader->noscrape_render($this->font, $this->obfuscation);
-        return match ($outputType) {
-            OutputType::FONT_FACE => "@font-face { font-family: 'noscrape-obfuscated'; src: url('data:font/truetype;charset=utf-8;base64,$result') }",
-            OutputType::BUFFER => base64_decode($result),
-            default => $result,
-        };
+        $binary = self::loadLib();
+
+        $param = json_encode([
+            "font" => $this->font,
+            "translation" => $this->mapping,
+        ]);
+
+        $command = "{$binary} '{$param}'";
+        return shell_exec($command);
     }
 }
 

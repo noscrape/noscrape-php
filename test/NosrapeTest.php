@@ -11,21 +11,22 @@ class NosrapeTest extends TestCase
 {
     public function test_noscrape()
     {
-        $noscr = new Noscrape("/Users/bernhards/GolandProjects/noscrape/example/ubuntu.ttf");
+        for ($i = 0; $i < 10; $i++) {
+            $noscr = new Noscrape("/Users/bernhards/GolandProjects/noscrape/noscrape/example/example.ttf");
 
-        $obf = $noscr->obfuscate("Das ist ein Test!");
-        print_r($obf);
+            $obf = $noscr->obfuscate("Das ist ein Test!");
+            // print_r($obf);
 
-        echo "\n";
+            // echo "\n";
 
-        $obf = $noscr->obfuscate("und gleich noch einer");
-        print_r($obf);
+            $obf = $noscr->obfuscate("und gleich noch einer");
+            # print_r($obf);
 
-        echo "\n";
+            // echo "$i\n";
 
-        $rendered = $noscr->render(OutputType::BUFFER);
+            $rendered = $noscr->render(OutputType::BUFFER);
+        }
 
-        print_r($rendered);
 
         $this->assertTrue(true);
     }
