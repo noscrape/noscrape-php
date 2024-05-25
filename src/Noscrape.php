@@ -34,7 +34,7 @@ class Noscrape {
 
         $obfuscated = '';
         foreach (str_split($s) as $c) {
-            if (!$this->mapping[$c]) {
+            if (!isset($this->mapping[$c])) {
                 $randomIndex = array_rand($availableChars);
                 $this->mapping[$c] = $availableChars[$randomIndex];
                 unset($availableChars[$randomIndex]);
