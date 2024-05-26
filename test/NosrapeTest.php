@@ -1,14 +1,16 @@
 <?php
 
-namespace Schoenbergerb\Noscrape\Test;
+namespace Noscrape\Noscrape\Test;
 
 use PHPUnit\Framework\TestCase;
-use Schoenbergerb\Noscrape\Noscrape;
-use Schoenbergerb\Noscrape\OutputType;
+use Noscrape\Noscrape\Noscrape;
 
 
 class NosrapeTest extends TestCase
 {
+    /**
+     * @throws \Exception
+     */
     public function test_noscrape()
     {
         for ($i = 0; $i < 10; $i++) {
@@ -24,7 +26,7 @@ class NosrapeTest extends TestCase
 
             // echo "$i\n";
 
-            $rendered = $noscr->render(OutputType::BUFFER);
+            $rendered = $noscr->render();
         }
 
 
