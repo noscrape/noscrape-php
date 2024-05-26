@@ -10,7 +10,6 @@
     }
   ],
   "require": {
-    "ext-ffi": "*",
     "ext-json": "*",
     "ext-mbstring": "*"
   },
