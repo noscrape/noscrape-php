@@ -1,5 +1,5 @@
 {
-  "name": "schoenbergerb/noscrape",
+  "name": "noscrape/noscrape",
   "description": "Description of your package",
   "type": "library",
   "license": "MIT",
@@ -15,29 +15,13 @@
   },
   "autoload": {
     "psr-4": {
-      "Schoenbergerb\\Noscrape\\": "src/"
+      "Noscrape\\Noscrape\\": "src/"
     }
   },
   "autoload-dev": {
     "psr-4": {
-      "Schoenbergerb\\Noscrape\\Test\\": "test/"
+      "Noscrape\\Noscrape\\Test\\": "test/"
     }
-  },
-  "extra": {
-    "binaries": [
-      {
-        "from": "bin/binary_linux",
-        "to": "binary"
-      },
-      {
-        "from": "bin/binary_macos",
-        "to": "binary"
-      },
-      {
-        "from": "bin/binary_windows.exe",
-        "to": "binary.exe"
-      }
-    ]
   },
   "require-dev": {
     "phpunit/phpunit": "^11.1"
