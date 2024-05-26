@@ -45,11 +45,10 @@ class Noscrape {
     }
 
     /**
-     * @param OutputType $outputType
      * @return string
      * @throws Exception
      */
-    public function render(OutputType $outputType=OutputType::BASE64): string
+    public function render(): string
     {
         $binary = self::loadLib();
 
