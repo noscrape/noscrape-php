@@ -40,7 +40,7 @@ class Noscrape {
                 unset($availableChars[$randomIndex]);
             }
 
-            $obfuscated .= mb_chr($this->mapping[$c], 'utf-8');
+            $obfuscated .= mb_convert_encoding('&#' . $this->mapping[$c] . ';', "utf8", "html-entities");
         }
 
         return $obfuscated;
