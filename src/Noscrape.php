@@ -2,8 +2,6 @@
 
 namespace Noscrape\Noscrape;
 
-include __DIR__ . "/../vendor/autoload.php";
-
 use Exception;
 
 class Noscrape {
