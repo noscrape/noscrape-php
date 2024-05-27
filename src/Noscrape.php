@@ -71,5 +71,3 @@ class Noscrape {
         return shell_exec($command);
     }
 }
-
-?>
