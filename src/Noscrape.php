@@ -10,22 +10,30 @@ class Noscrape {
 
     private string $font;
     private array $mapping = [];
-
     private array $puaRange;
 
     /**
-     * @throws Exception
+     * Constructs a new Noscrape instance.
+     *
+     * @param string $font The path to the font file to be used.
+     * @throws Exception if the font file is not readable.
      */
-    function __construct(string $font)
+    public function __construct(string $font)
     {
         if (!is_readable($font)) {
-            throw new Exception("font could not be found at: $font");
+            throw new Exception("Font could not be found at: $font");
         }
 
         $this->font = $font;
         $this->puaRange = range(0xE000, 0xF8FF);
     }
 
+    /**
+     * Obfuscates a given string by mapping each character to a unique PUA (Private Use Area) character.
+     *
+     * @param string $s The string to be obfuscated.
+     * @return string The obfuscated string.
+     */
     public function obfuscate(string $s): string
     {
         $availableChars = array_diff($this->puaRange, array_values($this->mapping));
@@ -45,8 +53,10 @@ class Noscrape {
     }
 
     /**
-     * @return string
-     * @throws Exception
+     * Renders the obfuscated text using noscrape binary.
+     *
+     * @return string The result of the rendering process.
+     * @throws Exception if the rendering library fails to load.
      */
     public function render(): string
     {
@@ -62,4 +72,4 @@ class Noscrape {
     }
 }
 
-
+?>
