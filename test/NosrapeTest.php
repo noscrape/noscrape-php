@@ -13,24 +13,25 @@ class NosrapeTest extends TestCase
      */
     public function test_noscrape()
     {
-        for ($i = 0; $i < 10; $i++) {
-            $noscr = new Noscrape("/Users/bernhards/GolandProjects/noscrape/noscrape/example/example.ttf");
+        $noscr = new Noscrape("/Users/bernhards/GolandProjects/noscrape/noscrape/example/example.ttf");
 
-            $obf = $noscr->obfuscate("Das ist ein Test!");
-            // print_r($obf);
+        $obf = $noscr->obfuscate("This is a Test");
+        self::assertNotEquals("This is a Test", $obf);
 
-            // echo "\n";
+        $obf = $noscr->obfuscate(123);
+        self::assertNotEquals("123", $obf);
 
-            $obf = $noscr->obfuscate("und gleich noch einer");
-            # print_r($obf);
+        $obf = $noscr->obfuscate([
+            "test" => "This is a Test",
+            "another" => [
+                "test" => "This is another Test",
+            ]
+        ]);
+        self::assertArrayHasKey("test", $obf);
 
-            // echo "$i\n";
+        $rendered = $noscr->render();
+        self::assertGreaterThan(0x1337, strlen($rendered));
 
-            $rendered = $noscr->render();
-        }
-
-
-        $this->assertTrue(true);
     }
 }
 
