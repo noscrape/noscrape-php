@@ -2,20 +2,8 @@
 
 ### Installation
 - add repository to your `composer.json`
-```json
-"repositories": [
-    {
-        "url": "https://github.com/noscrape/noscrape-php.git",
-        "type": "git"
-    }
-],
-```
-- add noscrape to require section
-```json
-"require": {
-    ...
-    "noscrape/noscrape": "dev-main"
-},
+```shell
+$ composer require noscrape/noscrape
 ```
 
 ### Example Usage
@@ -58,6 +46,7 @@ in your template
 - Linux x86_64
 - Windows x86_64
 
-if you miss your needed os/arch, feel free to contact us <a href="mailto:noscrape@gmx.de">noscrape@gmx.de</a>
+if you miss your needed os/arch, feel free to contact us <a href="mailto:noscrape@gmx.de">noscrape@gmx.de</a> or simply
+open a new issue 
 
 
