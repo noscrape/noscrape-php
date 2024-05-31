@@ -1,6 +1,16 @@
 {
   "name": "noscrape/noscrape",
-  "description": "Description of your package",
+  "description": "Noscrape utilizes true-type fonts to obfuscate strings and integers, providing robust anti-scraping measures for websites and applications. It generates a new font with shuffled unicodes, making it nearly impossible to reverse-engineer and decipher data without the obfuscation-font.",
+  "keywords": [
+    "avoid scraping",
+    "anti-scraping",
+    "data protection",
+    "obfuscation",
+    "web security",
+    "font obfuscation",
+    "sensitive data protection",
+    "AI resistance"
+  ],
   "type": "library",
   "license": "MIT",
   "authors": [
