@@ -36,6 +36,7 @@ class Noscrape {
      */
     public function __construct(string $font)
     {
+
         if (!is_readable($font)) {
             throw new Exception("Font could not be found at: $font");
         }
@@ -50,11 +51,26 @@ class Noscrape {
      * This method ensures that each character in the input string is replaced by a unique PUA character,
      * selected randomly from the available PUA characters that haven't been used yet.
      *
-     * @param string $s The string to be obfuscated.
-     * @return string The obfuscated string.
+     * @param string|int|array $s The string to be obfuscated.
+     * @return string|array The obfuscated string|array.
      */
-    public function obfuscate(string $s): string
+    public function obfuscate(string|int|array $s): string|array
     {
+        if (is_string($s)) {
+            return $this->obfuscateString($s);
+        }
+
+        if (is_integer($s)) {
+            return $this->obfuscateString("$s");
+        }
+
+        foreach ($s as $k => $v) {
+            $s[$k] = $this->obfuscate($v);
+        }
+        return $s;
+    }
+
+    private function obfuscateString(string $s): string {
         // Available characters are those in the PUA range that haven't been mapped yet
         $availableChars = array_diff($this->puaRange, array_values($this->mapping));
 
