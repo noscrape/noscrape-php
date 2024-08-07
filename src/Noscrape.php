@@ -75,7 +75,7 @@ class Noscrape {
         $availableChars = array_diff($this->puaRange, array_values($this->mapping));
 
         $obfuscated = '';
-        foreach (str_split($s) as $c) {
+        foreach (mb_str_split($s) as $c) {
             // If the character hasn't been mapped yet, map it to a random available PUA character
             if (!isset($this->mapping[$c])) {
                 $randomIndex = array_rand($availableChars);
@@ -111,6 +111,6 @@ class Noscrape {
         ]);
 
         // Execute the rendering command and return the output
-        return shell_exec( "{$binary} '{$param}'");
+        return trim(shell_exec("{$binary} '{$param}'"));
     }
 }
