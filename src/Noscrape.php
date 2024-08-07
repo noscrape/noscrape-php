@@ -111,6 +111,6 @@ class Noscrape {
         ]);
 
         // Execute the rendering command and return the output
-        return shell_exec( "{$binary} '{$param}'");
+        return trim(shell_exec("{$binary} '{$param}'"));
     }
 }
