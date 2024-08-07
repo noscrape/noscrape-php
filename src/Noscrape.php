@@ -70,21 +70,12 @@ class Noscrape {
         return $s;
     }
 
-    private function str_split_unicode(string $s): array {
-        $len = mb_strlen($s, 'UTF-8');
-        $result = [];
-        for ($i = 0; $i < $len; $i++) {
-            $result[] = mb_substr($s, $i, 1, 'UTF-8');
-        }
-        return $result;
-    }
-
     private function obfuscateString(string $s): string {
         // Available characters are those in the PUA range that haven't been mapped yet
         $availableChars = array_diff($this->puaRange, array_values($this->mapping));
 
         $obfuscated = '';
-        foreach ($this->str_split_unicode($s) as $c) {
+        foreach (mb_str_split($s) as $c) {
             // If the character hasn't been mapped yet, map it to a random available PUA character
             if (!isset($this->mapping[$c])) {
                 $randomIndex = array_rand($availableChars);
